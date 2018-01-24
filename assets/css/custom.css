@@ -1,0 +1,64 @@
+.alertify-notifier .ajs-message.ajs-success {
+    background: none;
+    border: 0;
+    text-shadow: none;
+}
+
+.badge {
+    pointer-events: auto;
+    overflow: hidden;
+    position: relative;
+    height: 70px;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    line-height: 1em;
+    width: 320px;
+    margin: 0 0 10px 10px;
+    border-radius: 50px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .2), 0 1px 2px rgba(0, 0, 0, .05), 0 8px 50px rgba(0, 0, 0, .05);
+}
+
+.badge_img {
+    display: block;
+    position: absolute;
+    float: left;
+    top: 3px;
+    left: 3px;
+    height: 64px;
+    width: 64px;
+}
+
+.badge_img img {
+    display: block;
+    height: 64px;
+    width: 64px;
+}
+
+.badge_text {
+    margin-left: 70px;
+    padding-right: 4px;
+}
+
+.badge_text_title {
+    line-height: 17.5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #3c3c3c;
+    text-align: left;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.badge_text_1 {
+    line-height: 1em;
+    display: inline-block;
+    color: #90a4ae;
+    font-size: 11px;
+    text-align: left;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
