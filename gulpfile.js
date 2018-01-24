@@ -5,6 +5,7 @@ var cleanCss = require('gulp-clean-css');
 var rev = require('gulp-rev');
 var del = require('del');
 var revReplace = require("gulp-rev-replace");
+var sass = require('gulp-sass');
  
 gulp.task('clean-js', function () {
 	return del([
@@ -24,7 +25,11 @@ gulp.task('clean-html', function () {
 	]);
 });
 
-
+gulp.task('sass',['clean-css'], function () {
+    return gulp.src('assets/sass/*.scss')
+      .pipe(sass.sync().on('error', sass.logError))
+      .pipe(gulp.dest('./css'));
+});
 
 gulp.task('pack-js', ['clean-js'], function () {
     return gulp.src(['assets/js/*.js'])
@@ -43,7 +48,7 @@ gulp.task('pack-js', ['clean-js'], function () {
         .pipe(gulp.dest(''));
     });
  
-gulp.task('pack-css', ['clean-css'], function () {	
+gulp.task('pack-css', ['sass'], function () {	
     return gulp.src(['assets/css/alertify.css', 'assets/css/themes/default.css','assets/css/custom.css'])
         .pipe(concat('stylesheet.css'))
         .pipe(cleanCss())

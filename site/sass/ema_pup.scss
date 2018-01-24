@@ -1,0 +1,33 @@
+// variable
+/* HSL */
+$grey: hsla(226%, 13%, 38%, 1);
+$cream: hsla(65%, 43%, 95%, 1);
+$green: hsla(62%, 53%, 56%, 1);
+$azure: hsla(207%, 54%, 51%, 1);
+$white: hsla(348%, 100%, 99%, 1);
+
+/* RGB */
+$grey: rgba(85, 91, 110, 1);
+$cream: rgba(246, 247, 235, 1);
+$green: rgba(198, 202, 83, 1);
+$azure: rgba(63, 136, 197, 1);
+$white: rgba(255, 250, 251, 1);
+
+$base:20px;
+
+body{
+    background: $white;
+}
+
+nav{
+    background:$azure;
+}
+
+footer{
+    background: $grey;
+}
+
+.list-group-item{
+    margin:$base/2;
+    // padding:$base;
+}
