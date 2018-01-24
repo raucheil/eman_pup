@@ -1,4 +1,4 @@
-.alertify-notifier .ajs-message.ajs-success {
+.alertify-notifier .ajs-message,.alertify-notifier .ajs-success {
     background: none;
     border: 0;
     text-shadow: none;

@@ -37,6 +37,7 @@ function countdown(){
     // var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     // var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
     // document.getElementById('timer_div').innerHTML = '20:00:'+second_left;
+    if (document.getElementById('timer_div') !== null){
     document.getElementById('timer_div').innerHTML = h+':'+m+':'+ s;
     console.log('date1: '+date1);
     // console.log('date2: '+date2);
@@ -44,6 +45,7 @@ function countdown(){
     {
         document.getElementById('timer_div').innerHTML = 'You are ready';
         clearInterval(interval);
+    }
     }
     }, 1000);
 }
@@ -144,59 +146,66 @@ var cnt='<div class="badge"><div class="badge_img"><img src="img/map.png" alt=""
 var cnt_2='<div class="badge"><div class="badge_img"><img src="img/user.png" alt=""></div><div class="badge_text"><div class="badge_text_title">Kalisi</div><div class="badge_text_1">Recently signed up from Italy</div><div class="badge_text_1">an hour ago</div></div>';
 
 
-function fbocci(start){
+function get_slide_type(elm,elapsed){
+    switch(elm){
+        case 1:
+            var cnt=random_visitor();
+            break;
+        case 2:
+            var cnt=random_product(elapsed);
+            break;
+        case 3:
+            var cnt=promotion();
+            break;
+        case 4:
+            var cnt=random_buyer();
+            break;
+        case 5:
+            var cnt=random_city();
+            break;
+        case 6:
+            var cnt=end_promo();
+            break;
+
+    }
+    return cnt;
+}
+
+function show_slide(i,arr,start){
+    var c = arr.length;
     var now=Date.now();
     var elapsed=Math.trunc((now-start)/30000);
-    console.log('start: '+start+'; Now: '+now+ '; elapsed: '+elapsed);
-    alertify.dismissAll();
+    console.log('start: '+start+'; Now: '+now+ '; elapsed: '+ elapsed);
+    // alertify.dismissAll();
     alertify.set('notifier', 'position' , 'bottom-left');
-    cnt_2=random_visitor();
-    var promo=[1,2,3,4,5,6];
-    var i=0;
-    do{
-        // for (i=0; i<promo.length; i++){
-        var element=promo[i];
-        switch(element){
-            case 1:
-                var cnt=random_visitor();
-                break;
-            case 2:
-                var cnt=random_product(elapsed);
-                break;
-            case 3:
-                var cnt=promotion();
-                break;
-            case 4:
-                var cnt=random_buyer();
-                break;
-            case 5:
-                var cnt=random_city();
-                break;
-            case 6:
-                var cnt=end_promo();
-                break;
-        }
-        var notification= alertify.success(cnt,8, function(){
-            console.log(element);
-            // continue;
-        });
-        if (element=6){
-            countdown();
-        }
-        // notification.ondismiss = function(){
-        //     continue;
-        // }
+    var cnt_alt=arr[i];
+    var slide=get_slide_type(cnt_alt,elapsed);   
+    var notification = alertify.message(slide);
+    // if (i=6){
+    //     countdown();
+    // }
+    countdown();
+    notification.ondismiss = function(){
         i++;
-    }while(i<promo.length)
-        // var notification= alertify.success(cnt_2,5);
-        // notification.ondismiss = function(){ 
-        // var cnt=random_product(elapsed);
-        // var notification_2=alertify.success(cnt,5);
-        //} 
-        // setInterval(fbocci,10000);
-    // clearInterval();
+        console.log(slide);
+        // break;
+        if (i<c) {  
+            console.log(i);   //  if the counter < 10, call the loop function
+            show_slide(i,arr,start);             //  ..  again which will trigger another 
+        }
+        else{
+            i=0;
+            show_slide(i,arr,start);
+        }
+    }
 }
-window.onload = function(){
-    var start=Date.now();
+
+var start=Date.now();
+// var promo=[6,2,3,4,5,1]; 
+var promo=[6,2]; 
+var i=0;
+function em_pp(){ 
+
     // setInterval(()=>fbocci(start),10000);
+    show_slide(i,promo,start);
 }
