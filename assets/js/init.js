@@ -82,26 +82,26 @@ function create_cnt(img,title,text){
 
 
 function random_visitor(){
-    var img='img/user.png';
+    var img='img/data.png';
     var number=make_vr();
     var title='in questo momento ci sono'
-    var text=' '+ number +' visitatori sul sito'
+    var text=''+ number +' visitatori sul sito'
     var slide=create_cnt(img,title,text);
     return slide;
 }
 
 function random_product(elap){
-    var img='img/user.png';
+    var img='img/calendar.png';
     var number=PrdRandom(elap,10);
-    var title='in data'+ today() + '';
+    var title='in data '+ today() + '';
     var text='rimangono soltanto '+ number +' prodotti a prezzo scontato.';
     var slide=create_cnt(img,title,text);
     return slide;
 }
 
 function promotion(){
-    var img='img/user.png';
-    var title='data di scadenza della promozione online:'+ today() + '';
+    var img='img/calendar.png';
+    var title='data di scadenza della promozione online: '+ today() + '';
     var text=' ';
     var slide=create_cnt(img,title,text);
     return slide;
@@ -109,8 +109,8 @@ function promotion(){
 
 function random_buyer(){
     var n=getRandomInt(30,60);
-    var img='img/user.png';
-    var title='il'+ today() + '';
+    var img='img/calendar.png';
+    var title='il '+ today() + '';
     var text='hanno acquistato '+ n +' clienti';
     var slide=create_cnt(img,title,text);
     return slide;
@@ -119,16 +119,16 @@ function random_buyer(){
 function random_city(){
     var city=['Agrigento','Alessandria','Ancona','Aosta','L\'Aquila','Arezzo','Ascoli-Piceno','Asti','Avellino','Bari','Barletta-Andria-Trani','Belluno','Benevento','Bergamo','Biella','Bologna','Bolzano','Brescia','Brindisi','Cagliari','Caltanissetta','Campobasso','Carbonia Iglesias','Caserta','Catania','Catanzaro','Chieti','Como','Cosenza','Cremona','Crotone','Cuneo','Enna','Fermo','Ferrara','Firenze','Foggia','Forli-Cesena','Frosinone','Genova','Gorizia','Grosseto','Imperia','Isernia','La-Spezia','Latina','Lecce','Lecco','Livorno','Lodi','Lucca','Macerata','Mantova','Massa-Carrara','Matera','Medio Campidano','Messina','Milano','Modena','Monza-Brianza','Napoli','Novara','Nuoro','Ogliastra','Olbia Tempio','Oristano','Padova','Palermo','Parma','Pavia','Perugia','Pesaro-Urbino','Pescara','Piacenza','Pisa','Pistoia','Pordenone','Potenza','Prato','Ragusa','Ravenna','Reggio-Calabria','Reggio-Emilia','Rieti','Rimini','Roma','Rovigo','Salerno','Sassari','Savona','Siena','Siracusa','Sondrio','Taranto','Teramo','Terni','Torino','Trapani','Trento','Treviso','Trieste','Udine','Varese','Venezia','Verbania','Vercelli','Verona','Vibo-Valentia','Vicenza','Viterbo'];
     var n=getRandomInt(0,109);
-    var img='img/user.png';
-    var title='un ordine è appena stato effettuato da:';
+    var img='img/check.png';
+    var title='un ordine è appena stato effettuato da: ';
     var text=''+city[n]+'';
     var slide=create_cnt(img,title,text);
     return slide;
 }
 
 function end_promo(){
-    var img='img/user.png';
-    var title='alla scadenza della promozione di oggi mancano:';
+    var img='img/count.png';
+    var title='alla scadenza della promozione di oggi mancano: ';
     var text='<div id="timer_div"></div>';
     var slide=create_cnt(img,title,text);
     return slide;
@@ -200,12 +200,14 @@ function show_slide(i,arr,start){
     }
 }
 
-var start=Date.now();
-// var promo=[6,2,3,4,5,1]; 
-var promo=[6,2]; 
-var i=0;
-function em_pp(){ 
 
+// var promo=[6,2,3,4,5,1]; 
+// var promo_slide=[6,2]; 
+
+function em_pp(promo_slide) { 
+    var start=Date.now();
+    var i = 0;
+    var promo = promo_slide;
     // setInterval(()=>fbocci(start),10000);
-    show_slide(i,promo,start);
+    show_slide(i,promo,start); 
 }

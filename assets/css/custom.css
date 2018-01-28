@@ -5,6 +5,7 @@
 }
 
 .badge {
+    font-family: sans-serif;
     pointer-events: auto;
     overflow: hidden;
     position: relative;
@@ -43,22 +44,24 @@
 
 .badge_text_title {
     line-height: 17.5px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #3c3c3c;
+    font-size: 10px;
+    /* font-weight: 700; */
+    color: #6d6d6d;
+    line-height: 1rem;
     text-align: left;
     display: block;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-wrap;
 }
 
 .badge_text_1 {
-    line-height: 1em;
+    line-height: 1.2rem;
     display: inline-block;
-    color: #90a4ae;
-    font-size: 11px;
+    color: #333;
+    font-size: 12px;
     text-align: left;
+    font-weight:bolder;
     display: block;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-wrap;
 }
