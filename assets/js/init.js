@@ -1,3 +1,6 @@
+/*** ema_pp ***/
+// version:1.0
+// created: daniele colpo
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)
@@ -76,7 +79,7 @@ function create_cnt(img,title,text){
     // if (!number){number='42';}
     if (!title){title='basic title';}
     if (!text){text='basic text';}
-    var slide='<div class="badge"><div class="badge_img"><img src="'+img+'" alt=""></div><div class="badge_text"><div class="badge_text_title">'+title+'</div><div class="badge_text_1">'+text+'</div></div>';
+    var slide='<div class="badge"><div class="badge_img"><img src="'+img+'" alt=""></div><div class="badge_text"><div class="badge_text_title">'+title+'</div><div class="badge_text_1">'+text+'</div><div class="small_text">Powered by Tool</div></div>';
     return slide;
 }
 
@@ -101,8 +104,8 @@ function random_product(elap){
 
 function promotion(){
     var img='img/calendar.png';
-    var title='data di scadenza della promozione online: '+ today() + '';
-    var text=' ';
+    var title='data di scadenza della promozione online: ';
+    var text=''+ today() +'';
     var slide=create_cnt(img,title,text);
     return slide;
 }

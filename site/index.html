@@ -23,11 +23,11 @@
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <!-- <nav>
+    <nav>
         <div class="container">
             <div class="row">
                 <div class="navbar">
-                    <a class="navbar-brand" href="#">Title</a>
+                    <!-- <a class="navbar-brand" href="#">Title</a>
                     <ul class="nav navbar-nav">
                         <li class="active">
                             <a href="#">Home</a>
@@ -35,15 +35,16 @@
                         <li>
                             <a href="#">Link</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
-    </nav> -->
+    </nav>
     <section>
         <div class="container">
             
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">     
+                
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <div id="list-group" class="list-group">
@@ -147,8 +148,9 @@
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <h4>HOW TO</h4>
-                        Genera la combinazione delle slide:
+                        <br>
+                        <h4 class="title"><b>HOW TO</b></h4>
+                        <b> Genera la combinazione delle slide:</b>
                         <p> 1 - DRAG & DROP per ordinare le slide</p>
                         <p> 2 - ON/OFF per disattivare le slide</p>
                         <p> 3 - genere il codice e segui le istruzioni per inserirlo nel sito</p>
@@ -159,7 +161,7 @@
                                 <pre id="css"></pre>
 
                                 <button type="button" class="btn btn-sm btn-danger" disabled="disabled">reset</button>
-                                <button type="button" class="btn btn-sm btn-primary" disabled="disabled">copia</button>
+                                <!-- <button type="button" class="btn btn-sm btn-primary btn-copy" disabled="disabled">copia</button> -->
                             </div>
                         </div>
                     </div>
@@ -236,12 +238,12 @@
         t += "var a=[" + dataList.join(",") + "];\n"
         t += "em_pp(a);\n"
         t += "}\n"
-        t += "script.src = 'js/bundle.js';\n"
+        t += "script.src = 'http://www.danielecolpo.it/ema_pp/js/bundle.js';\n"
         t += "head.appendChild(script);\n"
         t += "&lt;/script&gt;"
         // var t="";
         var cs =
-            "&lt;!-- inserire nel head per visualizzare correttamente lo slide --&gt;\n&lt;link rel='stylesheet' href='css/stylesheet.css'&gt;\n"
+            "&lt;!-- inserire prima di chiudere il tag head\n in ogni pagina in cui si vuole visualizzare o nell'header del sito\nper rendere graficamente le slide--&gt;\n\n&lt;link rel='stylesheet' href='http://www.danielecolpo.it/ema_pp/css/stylesheet.css'&gt;\n"
         console.log(dataList.join("|"));
         $("pre#js").contents().remove();
         $("pre#js").append(t);
@@ -253,6 +255,16 @@
         $("pre#js").contents().remove();
         // $("pre#js").append(t);
         $("pre#css").contents().remove();
+    })
+
+    $('.btn-copy').on('click',function(){
+        value=$("pre#js").contents().text();
+        value2=$("pre#css").contents().text();
+        var $temp = $("<input>");
+          $("body").append($temp);
+          $temp.val(value).select();
+          document.execCommand("copy");
+          $temp.remove();
     })
 </script>
 
