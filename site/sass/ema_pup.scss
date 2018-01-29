@@ -134,7 +134,7 @@ div{
     text-align: left;
     display: block;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space:pre-wrap;
 }
 
 .badge_text_1 {
@@ -146,7 +146,7 @@ div{
     text-align: left;
     display: block;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-wrap;
 }
 
 // Mixin for Default Switch Styles
