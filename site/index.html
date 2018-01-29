@@ -162,6 +162,10 @@
 
                                 <button type="button" class="btn btn-sm btn-danger" disabled="disabled">reset</button>
                                 <!-- <button type="button" class="btn btn-sm btn-primary btn-copy" disabled="disabled">copia</button> -->
+                                <br>
+                                <br>
+                                <a class="btn btn-sm btn-info" href="http://www.danielecolpo.it/newwp/" role="button">guarda un esempio</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -211,13 +215,13 @@
     $('.btn-toggle').on('click', function () {
         var b = $(this);
         var a = $(this).attr('aria-pressed');
-        console.log(a);
+        // console.log(a);
         if (a === 'true') {
             b.parents('.list-group-item').addClass('ignore-elements');
         } else {
             b.parents('.list-group-item').removeClass('ignore-elements');
         }
-        console.log('push');
+        // console.log('push');
     });
 
     $('.btn-make').on('click', function () {
@@ -229,7 +233,7 @@
         $('.btn-primary').removeAttr('disabled');
 
         var t =
-            "&lt;!-- inserire prima di chiudere il tag head\n in ogni pagina in cui si vuole visualizzare o nell'header del sito --&gt;\n\n";
+            "&lt;!-- inserire prima di chiudere il tag body\n in ogni pagina in cui si vuole visualizzare o nel footer del sito --&gt;\n\n";
         t += "&lt;script&gt;\n";
         t += "var head = document.getElementsByTagName('head')[0];\n"
         t += "var script = document.createElement('script');\n"
@@ -244,7 +248,7 @@
         // var t="";
         var cs =
             "&lt;!-- inserire prima di chiudere il tag head\n in ogni pagina in cui si vuole visualizzare o nell'header del sito\nper rendere graficamente le slide--&gt;\n\n&lt;link rel='stylesheet' href='http://www.danielecolpo.it/ema_pp/css/stylesheet.css'&gt;\n"
-        console.log(dataList.join("|"));
+        // console.log(dataList.join(","));
         $("pre#js").contents().remove();
         $("pre#js").append(t);
         $("pre#css").contents().remove();
