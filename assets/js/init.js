@@ -30,7 +30,7 @@ function countdown(){
     var interval = setInterval(function() {
     second_left=--seconds_left
     var today = new Date();
-    var date_to_reply = new Date('2018-01-26');
+    var date_to_reply = new Date('2018-03-18');
     var timeinmilisec = date_to_reply.getTime()-today.getTime();
     var date1= Math.floor(timeinmilisec / (1000 * 60 * 60 * 24) );
     var date = new Date(timeinmilisec);
@@ -177,13 +177,14 @@ function get_slide_type(elm,elapsed){
 function show_slide(i,arr,start){
     var c = arr.length;
     var now=Date.now();
-    var elapsed=Math.trunc((now-start)/30000);
+    var elapsed=Math.trunc((now-start)/5000);
     console.log('start: '+start+'; Now: '+now+ '; elapsed: '+ elapsed);
     // alertify.dismissAll();
     alertify.set('notifier', 'position' , 'bottom-left');
     var cnt_alt=arr[i];
     var slide=get_slide_type(cnt_alt,elapsed);   
     var notification = alertify.message(slide);
+    notification.delay(10);
     // if (i=6){
     //     countdown();
     // }
