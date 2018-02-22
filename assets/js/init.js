@@ -21,7 +21,7 @@ function today(){
         mm = '0'+mm
     } 
 
-    return today = mm + '/' + dd + '/' + yyyy;
+    return today = dd + '/' + mm + '/' + yyyy;
 }
 
 
@@ -79,7 +79,7 @@ function create_cnt(img,title,text){
     // if (!number){number='42';}
     if (!title){title='basic title';}
     if (!text){text='basic text';}
-    var slide='<div class="badge"><div class="badge_img"><img src="'+img+'" alt=""></div><div class="badge_text"><div class="badge_text_title">'+title+'</div><div class="badge_text_1">'+text+'</div><div class="small_text">Powered by Tool</div></div>';
+    var slide='<div class="badge"><div class="badge_img"><img src="'+img+'" alt=""></div><div class="badge_text"><div class="badge_text_title">'+title+'</div><div class="badge_text_1">'+text+'</div><div class="small_text"></div></div>';
     return slide;
 }
 
