@@ -5,6 +5,8 @@ var cleanCss = require('gulp-clean-css');
 var rev = require('gulp-rev');
 var del = require('del');
 var revReplace = require("gulp-rev-replace");
+var rename = require('gulp-rename');
+
 // var sass = require('gulp-sass');
  
 gulp.task('clean-js', function () {
@@ -75,10 +77,20 @@ gulp.task('revreplace-js', ['clean-html','pack-js'], function(){
       .pipe(gulp.dest('build/'));
   });
 
+  gulp.task('bundle-js',function(){
+    var manifest = gulp.src("build/rev-manifest.json");
+    return gulp.src("build/js/*.js")
+      .pipe(rename('bundle.js'))
+      .pipe(revReplace({manifest: manifest}))
+      .pipe(gulp.dest('build/js/'));
+  });
+
 
 gulp.task('watch', function() {
     gulp.watch('assets/js/**/*.js', ['revreplace-js']);
     gulp.watch('assets/css/**/*.css', ['revreplace-css']);
+    gulp.watch('build/css/**/*.css', ['bundle-js']);
+    gulp.watch('build/js/**/*.js', ['bundle-js']);
 });
 
 gulp.task('default', ['watch']);

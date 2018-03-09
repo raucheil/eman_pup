@@ -42,8 +42,8 @@ function countdown(){
     // document.getElementById('timer_div').innerHTML = '20:00:'+second_left;
     if (document.getElementById('timer_div') !== null){
     document.getElementById('timer_div').innerHTML = h+':'+m+':'+ s;
-    console.log('date1: '+date1);
-    // console.log('date2: '+date2);
+   //  console.log('date1: '+date1);
+    ////  console.log('date2: '+date2);
     if (s <= 0)
     {
         document.getElementById('timer_div').innerHTML = 'You are ready';
@@ -79,7 +79,7 @@ function create_cnt(img,title,text){
     // if (!number){number='42';}
     if (!title){title='basic title';}
     if (!text){text='basic text';}
-    var slide='<div class="badge"><div class="badge_img"><img src="'+img+'" alt=""></div><div class="badge_text"><div class="badge_text_title">'+title+'</div><div class="badge_text_1">'+text+'</div><div class="small_text"></div></div>';
+    var slide='<div class="badge"><div class="badge_img"><img src="'+img+'" alt=""></div><div class="badge_text"><div class="badge_text_title">'+title+'</div><div class="badge_text_1">'+text+'</div><div class="small_text">powered by popflu</div></div>';
     return slide;
 }
 
@@ -178,7 +178,7 @@ function show_slide(i,arr,start){
     var c = arr.length;
     var now=Date.now();
     var elapsed=Math.trunc((now-start)/5000);
-    console.log('start: '+start+'; Now: '+now+ '; elapsed: '+ elapsed);
+   //  console.log('start: '+start+'; Now: '+now+ '; elapsed: '+ elapsed);
     // alertify.dismissAll();
     alertify.set('notifier', 'position' , 'bottom-left');
     var cnt_alt=arr[i];
@@ -191,10 +191,10 @@ function show_slide(i,arr,start){
     countdown();
     notification.ondismiss = function(){
         i++;
-        console.log(slide);
+       //  console.log(slide);
         // break;
         if (i<c) {  
-            console.log(i);   //  if the counter < 10, call the loop function
+           //  console.log(i);   //  if the counter < 10, call the loop function
             show_slide(i,arr,start);             //  ..  again which will trigger another 
         }
         else{
@@ -218,7 +218,7 @@ function em_pp(promo_slide) {
         link.rel  = 'stylesheet';
         link.type = 'text/css';
         link.href = 'https://www.popflu.com/ppfl/css/stylesheet.css';
-        link.media = 'all'; 
+        link.media = 'all' ; 
         head.appendChild(link);
     }
     var start=Date.now();
