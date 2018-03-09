@@ -75,7 +75,7 @@ function make_vr(time){
 }
 
 function create_cnt(img,title,text){
-    if (!img){img='http://www.danielecolpo.it/ema_pp/img/map.png';}
+    if (!img){img='https://www.popflu.com/ppfl/img/map.png';}
     // if (!number){number='42';}
     if (!title){title='basic title';}
     if (!text){text='basic text';}
@@ -85,7 +85,7 @@ function create_cnt(img,title,text){
 
 
 function random_visitor(){
-    var img='http://www.danielecolpo.it/ema_pp/img/data.png';
+    var img='https://www.popflu.com/ppfl/img/data.png';
     var number=make_vr();
     var title='in questo momento ci sono'
     var text=''+ number +' visitatori sul sito'
@@ -94,7 +94,7 @@ function random_visitor(){
 }
 
 function random_product(elap){
-    var img='http://www.danielecolpo.it/ema_pp/img/calendar.png';
+    var img='https://www.popflu.com/ppfl/img/calendar.png';
     var number=PrdRandom(elap,10);
     var title='in data '+ today() + '';
     var text='rimangono soltanto '+ number +' prodotti a prezzo scontato.';
@@ -103,7 +103,7 @@ function random_product(elap){
 }
 
 function promotion(){
-    var img='http://www.danielecolpo.it/ema_pp/img/calendar.png';
+    var img='https://www.popflu.com/ppfl/img/calendar.png';
     var title='data di scadenza della promozione online: ';
     var text=''+ today() +'';
     var slide=create_cnt(img,title,text);
@@ -112,7 +112,7 @@ function promotion(){
 
 function random_buyer(){
     var n=getRandomInt(30,60);
-    var img='http://www.danielecolpo.it/ema_pp/img/calendar.png';
+    var img='https://www.popflu.com/ppfl/img/calendar.png';
     var title='il '+ today() + '';
     var text='hanno acquistato '+ n +' clienti';
     var slide=create_cnt(img,title,text);
@@ -122,7 +122,7 @@ function random_buyer(){
 function random_city(){
     var city=['Agrigento','Alessandria','Ancona','Aosta','L\'Aquila','Arezzo','Ascoli-Piceno','Asti','Avellino','Bari','Barletta-Andria-Trani','Belluno','Benevento','Bergamo','Biella','Bologna','Bolzano','Brescia','Brindisi','Cagliari','Caltanissetta','Campobasso','Carbonia Iglesias','Caserta','Catania','Catanzaro','Chieti','Como','Cosenza','Cremona','Crotone','Cuneo','Enna','Fermo','Ferrara','Firenze','Foggia','Forli-Cesena','Frosinone','Genova','Gorizia','Grosseto','Imperia','Isernia','La-Spezia','Latina','Lecce','Lecco','Livorno','Lodi','Lucca','Macerata','Mantova','Massa-Carrara','Matera','Medio Campidano','Messina','Milano','Modena','Monza-Brianza','Napoli','Novara','Nuoro','Ogliastra','Olbia Tempio','Oristano','Padova','Palermo','Parma','Pavia','Perugia','Pesaro-Urbino','Pescara','Piacenza','Pisa','Pistoia','Pordenone','Potenza','Prato','Ragusa','Ravenna','Reggio-Calabria','Reggio-Emilia','Rieti','Rimini','Roma','Rovigo','Salerno','Sassari','Savona','Siena','Siracusa','Sondrio','Taranto','Teramo','Terni','Torino','Trapani','Trento','Treviso','Trieste','Udine','Varese','Venezia','Verbania','Vercelli','Verona','Vibo-Valentia','Vicenza','Viterbo'];
     var n=getRandomInt(0,109);
-    var img='http://www.danielecolpo.it/ema_pp/img/check.png';
+    var img='https://www.popflu.com/ppfl/img/check.png';
     var title='un ordine è appena stato effettuato da: ';
     var text=''+city[n]+'';
     var slide=create_cnt(img,title,text);
@@ -130,7 +130,7 @@ function random_city(){
 }
 
 function end_promo(){
-    var img='http://www.danielecolpo.it/ema_pp/img/count.png';
+    var img='https://www.popflu.com/ppfl/img/count.png';
     var title='alla scadenza della promozione di oggi mancano: ';
     var text='<div id="timer_div"></div>';
     var slide=create_cnt(img,title,text);
@@ -209,6 +209,18 @@ function show_slide(i,arr,start){
 // var promo_slide=[6,2]; 
 
 function em_pp(promo_slide) { 
+    var cssId = 'PopCss';  // you could encode the css path itself to generate id..
+    if (!document.getElementById(cssId))
+    {
+        var head  = document.getElementsByTagName('head')[0];
+        var link  = document.createElement('link');
+        link.id   = cssId;
+        link.rel  = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://www.popflu.com/ppfl/css/stylesheet.css';
+        link.media = 'all'; 
+        head.appendChild(link);
+    }
     var start=Date.now();
     var i = 0;
     var promo = promo_slide;
