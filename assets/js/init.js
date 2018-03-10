@@ -7,6 +7,22 @@
  * Using Math.round() will give you a non-uniform distribution!
  */
 
+function loadJSON(callback) {   
+    var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', '/ppfl/data/data.json', true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+              callback(xobj.responseText);
+              
+          }
+    };
+    xobj.send(null);  
+ }
+ 
+
+
 function today(){
     var today = new Date();
     var dd = today.getDate();
@@ -20,10 +36,8 @@ function today(){
     if(mm<10) {
         mm = '0'+mm
     } 
-
     return today = dd + '/' + mm + '/' + yyyy;
 }
-
 
 function countdown(){
     var seconds_left = 10;
@@ -42,8 +56,8 @@ function countdown(){
     // document.getElementById('timer_div').innerHTML = '20:00:'+second_left;
     if (document.getElementById('timer_div') !== null){
     document.getElementById('timer_div').innerHTML = h+':'+m+':'+ s;
-   //  console.log('date1: '+date1);
-    ////  console.log('date2: '+date2);
+   //  // console.log('date1: '+date1);
+    ////  // console.log('date2: '+date2);
     if (s <= 0)
     {
         document.getElementById('timer_div').innerHTML = 'You are ready';
@@ -70,7 +84,8 @@ function PrdRandom(lapse,count){
 }
 
 function make_vr(time){
-        var value=getRandomInt(100, 150);
+        // var value=getRandomInt(100, 150);
+        var value=getRandomInt(10, 30);
         return value;
 }
 
@@ -84,16 +99,18 @@ function create_cnt(img,title,text){
 }
 
 
-function random_visitor(){
-    var img='https://www.popflu.com/ppfl/img/data.png';
+function random_visitor(jsdata){
+    var img = 'https://www.popflu.com/ppfl/img/data.png';
+    var obj = jsdata;
+    var count = Object.keys(obj).length;
     var number=make_vr();
     var title='in questo momento ci sono'
-    var text=''+ number +' visitatori sul sito'
+    var text=''+ count +' persone incuriosite da popflu'
     var slide=create_cnt(img,title,text);
     return slide;
 }
 
-function random_product(elap){
+function random_product(elap,jsdata){
     var img='https://www.popflu.com/ppfl/img/calendar.png';
     var number=PrdRandom(elap,10);
     var title='in data '+ today() + '';
@@ -102,7 +119,7 @@ function random_product(elap){
     return slide;
 }
 
-function promotion(){
+function promotion(jsdata){
     var img='https://www.popflu.com/ppfl/img/calendar.png';
     var title='data di scadenza della promozione online: ';
     var text=''+ today() +'';
@@ -110,21 +127,24 @@ function promotion(){
     return slide;
 }
 
-function random_buyer(){
-    var n=getRandomInt(30,60);
+function random_buyer(jsdata){
+    var n=getRandomInt(10,30);
     var img='https://www.popflu.com/ppfl/img/calendar.png';
     var title='il '+ today() + '';
-    var text='hanno acquistato '+ n +' clienti';
+    var text=''+ n +' persone si sono iscritti alla beta gratuita ';
     var slide=create_cnt(img,title,text);
     return slide;
 }
 
-function random_city(){
-    var city=['Agrigento','Alessandria','Ancona','Aosta','L\'Aquila','Arezzo','Ascoli-Piceno','Asti','Avellino','Bari','Barletta-Andria-Trani','Belluno','Benevento','Bergamo','Biella','Bologna','Bolzano','Brescia','Brindisi','Cagliari','Caltanissetta','Campobasso','Carbonia Iglesias','Caserta','Catania','Catanzaro','Chieti','Como','Cosenza','Cremona','Crotone','Cuneo','Enna','Fermo','Ferrara','Firenze','Foggia','Forli-Cesena','Frosinone','Genova','Gorizia','Grosseto','Imperia','Isernia','La-Spezia','Latina','Lecce','Lecco','Livorno','Lodi','Lucca','Macerata','Mantova','Massa-Carrara','Matera','Medio Campidano','Messina','Milano','Modena','Monza-Brianza','Napoli','Novara','Nuoro','Ogliastra','Olbia Tempio','Oristano','Padova','Palermo','Parma','Pavia','Perugia','Pesaro-Urbino','Pescara','Piacenza','Pisa','Pistoia','Pordenone','Potenza','Prato','Ragusa','Ravenna','Reggio-Calabria','Reggio-Emilia','Rieti','Rimini','Roma','Rovigo','Salerno','Sassari','Savona','Siena','Siracusa','Sondrio','Taranto','Teramo','Terni','Torino','Trapani','Trento','Treviso','Trieste','Udine','Varese','Venezia','Verbania','Vercelli','Verona','Vibo-Valentia','Vicenza','Viterbo'];
-    var n=getRandomInt(0,109);
-    var img='https://www.popflu.com/ppfl/img/check.png';
-    var title='un ordine è appena stato effettuato da: ';
-    var text=''+city[n]+'';
+function random_city(jsdata){
+    // var city = ['Agrigento', 'Alessandria', 'Ancona', 'Aosta', 'L\'Aquila', 'Arezzo', 'Ascoli-Piceno', 'Asti', 'Avellino', 'Bari', 'Barletta-Andria-Trani', 'Belluno', 'Benevento', 'Bergamo', 'Biella', 'Bologna', 'Bolzano', 'Brescia', 'Brindisi', 'Cagliari', 'Caltanissetta', 'Campobasso', 'Carbonia Iglesias', 'Caserta', 'Catania', 'Catanzaro', 'Chieti', 'Como', 'Cosenza', 'Cremona', 'Crotone', 'Cuneo', 'Enna', 'Fermo', 'Ferrara', 'Firenze', 'Foggia', 'Forli-Cesena', 'Frosinone', 'Genova', 'Gorizia', 'Grosseto', 'Imperia', 'Isernia', 'La-Spezia', 'Latina', 'Lecce', 'Lecco', 'Livorno', 'Lodi', 'Lucca', 'Macerata', 'Mantova', 'Massa-Carrara', 'Matera', 'Medio Campidano', 'Messina', 'Milano', 'Modena', 'Monza-Brianza', 'Napoli', 'Novara', 'Nuoro', 'Ogliastra', 'Olbia Tempio', 'Oristano', 'Padova', 'Palermo', 'Parma', 'Pavia', 'Perugia', 'Pesaro-Urbino', 'Pescara', 'Piacenza', 'Pisa', 'Pistoia', 'Pordenone', 'Potenza', 'Prato', 'Ragusa', 'Ravenna', 'Reggio-Calabria', 'Reggio-Emilia', 'Rieti', 'Rimini', 'Roma', 'Rovigo', 'Salerno', 'Sassari', 'Savona', 'Siena', 'Siracusa', 'Sondrio', 'Taranto', 'Teramo', 'Terni', 'Torino', 'Trapani', 'Trento', 'Treviso', 'Trieste', 'Udine', 'Varese', 'Venezia', 'Verbania', 'Vercelli', 'Verona', 'Vibo-Valentia', 'Vicenza', 'Viterbo'];
+    var obj = jsdata;
+    var count = Object.keys(obj).length;
+    // console.log(count);
+    var n=getRandomInt(0,count-1);
+    var img='https://www.popflu.com/ppfl/img/map.png';
+    var title='una persona da: ';
+    var text=''+obj[n].citta+' si è registrata alla beta gratuita';
     var slide=create_cnt(img,title,text);
     return slide;
 }
@@ -133,6 +153,20 @@ function end_promo(){
     var img='https://www.popflu.com/ppfl/img/count.png';
     var title='alla scadenza della promozione di oggi mancano: ';
     var text='<div id="timer_div"></div>';
+    var slide=create_cnt(img,title,text);
+    return slide;
+}
+
+function subscriber(jsdata) {
+    var img = 'https://www.popflu.com/ppfl/img/check.png';
+    // var obj = jsdata;
+    var obj = jsdata;
+    var count = Object.keys(obj).length;
+    // console.log(count);
+    var n=getRandomInt(0,count-1);
+    // var giorno = obj;
+    var title='il '+ obj[n].data + ' alle ' + obj[n].ora+ '';
+    var text=''+obj[n].name+' si è registrato alla beta gratuita';
     var slide=create_cnt(img,title,text);
     return slide;
 }
@@ -149,40 +183,67 @@ function end_promo(){
 // var cnt_2='<div class="badge"><div class="badge_img"><img src="img/user.png" alt=""></div><div class="badge_text"><div class="badge_text_title">Kalisi</div><div class="badge_text_1">Recently signed up from Italy</div><div class="badge_text_1">an hour ago</div></div>';
 
 
-function get_slide_type(elm,elapsed){
+function get_slide_type(elm,elapsed,jsdata){
     switch(elm){
         case 1:
-            var cnt=random_visitor();
+            var cnt=random_visitor(jsdata);
+            // var cnt=subscriber(jsdata);
             break;
         case 2:
             var cnt=random_product(elapsed);
             break;
         case 3:
-            var cnt=promotion();
+            var cnt=promotion(jsdata);
             break;
         case 4:
-            var cnt=random_buyer();
+            var cnt=random_buyer(jsdata);
             break;
         case 5:
-            var cnt=random_city();
+            var cnt=random_city(jsdata);
             break;
         case 6:
-            var cnt=end_promo();
-            break;
-
+            var cnt=end_promo(jsdata);
+            break;    
+        case 7:
+            var cnt=subscriber(jsdata);
+            break;   
+        case 7:
+            var cnt=subscriber(jsdata);
+            break;  
     }
     return cnt;
 }
 
-function show_slide(i,arr,start){
-    var c = arr.length;
+function show_slide(i, arr, start) {
+    var a = function init() {
+        loadJSON(function (response) {
+            //     // Parse JSON string into objec
+            var dc = response;
+            // console.log(response);
+            return response;
+            //  var jsdata = init();
+            // // console.log(jsdata);
+        });
+    }();  
+    let url = '/ppfl/data/data.json';
+
+    fetch(url)
+    .then(res => res.json())
+    .then((out) => {
+    // console.log('Checkout this JSON! ', out);
+    // console.log(out);
+    // var jsdata = '[{"name": "daniele","data": "20/13/2018"}]';   
+    var c = arr.length; 
+    // // console.log(jsdata);
+    // // console.log(jsdata);
+
     var now=Date.now();
     var elapsed=Math.trunc((now-start)/5000);
-   //  console.log('start: '+start+'; Now: '+now+ '; elapsed: '+ elapsed);
+   //  // console.log('start: '+start+'; Now: '+now+ '; elapsed: '+ elapsed);
     // alertify.dismissAll();
     alertify.set('notifier', 'position' , 'bottom-left');
-    var cnt_alt=arr[i];
-    var slide=get_slide_type(cnt_alt,elapsed);   
+    var cnt_alt = arr[i];
+    var slide=get_slide_type(cnt_alt,elapsed, out);   
     var notification = alertify.message(slide);
     notification.delay(10);
     // if (i=6){
@@ -191,17 +252,19 @@ function show_slide(i,arr,start){
     countdown();
     notification.ondismiss = function(){
         i++;
-       //  console.log(slide);
+       //  // console.log(slide);
         // break;
         if (i<c) {  
-           //  console.log(i);   //  if the counter < 10, call the loop function
+           //  // console.log(i);   //  if the counter < 10, call the loop function
             show_slide(i,arr,start);             //  ..  again which will trigger another 
         }
         else{
             i=0;
             show_slide(i,arr,start);
         }
-    }
+        }
+    })
+    .catch(err => { throw err });    
 }
 
 
@@ -221,9 +284,12 @@ function em_pp(promo_slide) {
         link.media = 'all' ; 
         head.appendChild(link);
     }
+    // var str=document.getElementById("myDiv");   
+    // str.replace("<link rel=\'stylesheet\' href=\"https://www.danielecolpo.it/ema_pp/css/stylesheet.css\">", "");
     var start=Date.now();
     var i = 0;
     var promo = promo_slide;
+    var promo = [1,7,5];
     // setInterval(()=>fbocci(start),10000);
     show_slide(i,promo,start); 
 }
