@@ -2,8 +2,8 @@
     background: none;
     border: 0;
     text-shadow: none;
+    font-family: sans-serif;
 }
-
 
 
 .badge {
@@ -39,17 +39,20 @@
     width: 64px;
 }
 
+
 .badge_text {
+    font-family: sans-serif;
     margin-left: 70px;
     padding-right: 4px;
 }
 
 .badge_text_title {
-    line-height: 17..5px;
+    font-family: sans-serif;
+    line-height: 1rem;
     font-size: 11px;
     /* font-weight: 700; */
     color: #6d6d6d;
-    line-height: 1.5rem;
+    /* line-height: 1.5rem; */
     text-align: left;
     display: block;
     text-overflow: ellipsis;
@@ -57,10 +60,12 @@
 }
 
 .badge_text_1 {
-    line-height: 1.5rem;
+    font-family: sans-serif;
+    line-height: 1rem;
     display: inline-block;
     color: #333;
     font-size: 12px;
+    /* font-size: 2vw; */
     text-align: left;
     font-weight:bolder;
     display: block;
@@ -69,6 +74,7 @@
 }
 
 .small_text{
+    font-family: sans-serif;
     float:right;
     font-size:10px;
     color:#81bdc5;
@@ -191,10 +197,11 @@
     }
     
     .badge_text_1 {
-        line-height: 1.5rem;
+        line-height: 1rem;
         display: inline-block;
         color: #333;
         font-size: 11px;
+        /* font-size:1w; */
         text-align: left;
         font-weight:bolder;
         display: block;

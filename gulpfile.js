@@ -6,6 +6,7 @@ var rev = require('gulp-rev');
 var del = require('del');
 var revReplace = require("gulp-rev-replace");
 var rename = require('gulp-rename');
+var webserver = require('gulp-webserver');
 
 // var sass = require('gulp-sass');
  
@@ -66,7 +67,7 @@ gulp.task('pack-css', ['clean-css'], function () {
 gulp.task('revreplace-js', ['clean-html','pack-js'], function(){
     var manifest = gulp.src("build/rev-manifest.json");
     return gulp.src("assets/html/index.html")
-      .pipe(revReplace({manifest: manifest}))
+    //   .pipe(revReplace({manifest: manifest}))
       .pipe(gulp.dest('build/'));
   });
 
@@ -93,4 +94,21 @@ gulp.task('watch', function() {
     gulp.watch('build/js/**/*.js', ['bundle-js']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('webserver', function() {
+    gulp.src('build')
+      .pipe(webserver({
+        livereload: true,
+        directoryListing: {
+            enable: true,
+            path: 'build'
+          },
+        open: true
+      }));
+  });
+
+gulp.task('smtp-css', function () {
+    gulp.watch('assets/css/**/*.css', ['pack-css']);
+});
+
+gulp.task('default', ['webserver','watch']);
+// gulp.task('default', ['smtp-css','watch']);

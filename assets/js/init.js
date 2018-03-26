@@ -7,21 +7,30 @@
  * Using Math.round() will give you a non-uniform distribution!
  */
 
-function loadJSON(callback) {   
-    var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', '/ppfl/data/data.json', true); // Replace 'my_data' with the path to your file
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-              callback(xobj.responseText);
+// function loadJSON(callback) {   
+//     var xobj = new XMLHttpRequest();
+//         xobj.overrideMimeType("application/json");
+//     xobj.open('GET', '/ppfl/data/data.json', true); // Replace 'my_data' with the path to your file
+//     xobj.onreadystatechange = function () {
+//           if (xobj.readyState == 4 && xobj.status == "200") {
+//             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+//               callback(xobj.responseText);
               
-          }
-    };
-    xobj.send(null);  
- }
+//           }
+//     };
+//     xobj.send(null);  
+//  }
  
 
+function error_(val){
+    var value=val;
+    console.log('error_'+ value);
+    var a='';
+    if (value){
+        a=value;
+    }
+    return a;
+}
 
 function today(){
     var today = new Date();
@@ -99,7 +108,7 @@ function create_cnt(img,title,text){
 }
 
 
-function random_visitor(jsdata){
+function random_visitor(jsdata,les){
     var img = 'https://www.popflu.com/ppfl/img/data.png';
     var obj = jsdata;
     var count = Object.keys(obj).length;
@@ -110,7 +119,7 @@ function random_visitor(jsdata){
     return slide;
 }
 
-function random_product(elap,jsdata){
+function random_product(elap,jsdata,les){
     var img='https://www.popflu.com/ppfl/img/calendar.png';
     var number=PrdRandom(elap,10);
     var title='in data '+ today() + '';
@@ -119,7 +128,7 @@ function random_product(elap,jsdata){
     return slide;
 }
 
-function promotion(jsdata){
+function promotion(jsdata,les){
     var img='https://www.popflu.com/ppfl/img/calendar.png';
     var title='data di scadenza della promozione online: ';
     var text=''+ today() +'';
@@ -127,7 +136,7 @@ function promotion(jsdata){
     return slide;
 }
 
-function random_buyer(jsdata){
+function random_buyer(jsdata,les){
     var n=getRandomInt(10,30);
     var img='https://www.popflu.com/ppfl/img/calendar.png';
     var title='il '+ today() + '';
@@ -136,15 +145,17 @@ function random_buyer(jsdata){
     return slide;
 }
 
-function random_city(jsdata){
+function random_city(jsdata,les){
     // var city = ['Agrigento', 'Alessandria', 'Ancona', 'Aosta', 'L\'Aquila', 'Arezzo', 'Ascoli-Piceno', 'Asti', 'Avellino', 'Bari', 'Barletta-Andria-Trani', 'Belluno', 'Benevento', 'Bergamo', 'Biella', 'Bologna', 'Bolzano', 'Brescia', 'Brindisi', 'Cagliari', 'Caltanissetta', 'Campobasso', 'Carbonia Iglesias', 'Caserta', 'Catania', 'Catanzaro', 'Chieti', 'Como', 'Cosenza', 'Cremona', 'Crotone', 'Cuneo', 'Enna', 'Fermo', 'Ferrara', 'Firenze', 'Foggia', 'Forli-Cesena', 'Frosinone', 'Genova', 'Gorizia', 'Grosseto', 'Imperia', 'Isernia', 'La-Spezia', 'Latina', 'Lecce', 'Lecco', 'Livorno', 'Lodi', 'Lucca', 'Macerata', 'Mantova', 'Massa-Carrara', 'Matera', 'Medio Campidano', 'Messina', 'Milano', 'Modena', 'Monza-Brianza', 'Napoli', 'Novara', 'Nuoro', 'Ogliastra', 'Olbia Tempio', 'Oristano', 'Padova', 'Palermo', 'Parma', 'Pavia', 'Perugia', 'Pesaro-Urbino', 'Pescara', 'Piacenza', 'Pisa', 'Pistoia', 'Pordenone', 'Potenza', 'Prato', 'Ragusa', 'Ravenna', 'Reggio-Calabria', 'Reggio-Emilia', 'Rieti', 'Rimini', 'Roma', 'Rovigo', 'Salerno', 'Sassari', 'Savona', 'Siena', 'Siracusa', 'Sondrio', 'Taranto', 'Teramo', 'Terni', 'Torino', 'Trapani', 'Trento', 'Treviso', 'Trieste', 'Udine', 'Varese', 'Venezia', 'Verbania', 'Vercelli', 'Verona', 'Vibo-Valentia', 'Vicenza', 'Viterbo'];
     var obj = jsdata;
     var count = Object.keys(obj).length;
     // console.log(count);
-    var n=getRandomInt(0,count-1);
+    var les=les;
+    var n=getRandomInt(0,count-les);
+    var citta=error_(obj[n].citta);
     var img='https://www.popflu.com/ppfl/img/map.png';
     var title='una persona da: ';
-    var text=''+obj[n].citta+' si è registrata alla beta gratuita';
+    var text=''+citta+' si è registrata alla beta gratuita';
     var slide=create_cnt(img,title,text);
     return slide;
 }
@@ -157,16 +168,57 @@ function end_promo(){
     return slide;
 }
 
-function subscriber(jsdata) {
+function subscriber(jsdata,les) {
     var img = 'https://www.popflu.com/ppfl/img/check.png';
     // var obj = jsdata;
     var obj = jsdata;
     var count = Object.keys(obj).length;
     // console.log(count);
-    var n=getRandomInt(0,count-1);
+    var les=les;
+    var n=getRandomInt(0,count-les);
     // var giorno = obj;
     var title='il '+ obj[n].data + ' alle ' + obj[n].ora+ '';
     var text=''+obj[n].name+' si è registrato alla beta gratuita';
+    var slide=create_cnt(img,title,text);
+    return slide;
+}
+
+function subscriber_samo(jsdata,les) {
+    var img = 'https://www.popflu.com/ppfl/img/check.png';
+    // var obj = jsdata;
+    var obj = jsdata;
+    if (!obj) {
+        console.log('obj non availabe');
+        // break;
+    }
+    // var count = 0;
+    var les=les;
+    var count = Object.keys(obj).length-les; //ds3.csv insert an extra row at request so -2 to fix overcount
+    // console.log(count);
+    var n = getRandomInt(0, count);
+    // console.log(n);
+
+    // var giorno = obj;
+    if (obj[n].data) {
+        var day = obj[n].data;    
+    } else {
+        var day = '';
+    }
+    if (obj[n].name) {
+        var name= obj[n].name;
+    } else {
+        var name = '';
+    }
+    if (obj[n].surname) {
+        var surname=obj[n].surname
+    } else {
+        var surname = '';
+    }
+    // var title='il '+day+' ';
+    // var text=''+name+' '+surname+' si è registrato alla beta gratuita';
+    // var slide = create_cnt(img, title, text);
+    var title='il giorno '+day+'';
+    var text=''+name+' '+surname+' si è abbonato a ....';
     var slide=create_cnt(img,title,text);
     return slide;
 }
@@ -183,56 +235,38 @@ function subscriber(jsdata) {
 // var cnt_2='<div class="badge"><div class="badge_img"><img src="img/user.png" alt=""></div><div class="badge_text"><div class="badge_text_title">Kalisi</div><div class="badge_text_1">Recently signed up from Italy</div><div class="badge_text_1">an hour ago</div></div>';
 
 
-function get_slide_type(elm,elapsed,jsdata){
+function get_slide_type(elm,elapsed,jsdata,les){
     switch(elm){
         case 1:
-            var cnt=random_visitor(jsdata);
+            var cnt=random_visitor(jsdata,les);
             // var cnt=subscriber(jsdata);
             break;
         case 2:
-            var cnt=random_product(elapsed);
+            var cnt=random_product(elapsed,jsdata,les);
             break;
         case 3:
-            var cnt=promotion(jsdata);
+            var cnt=promotion(jsdata,les);
             break;
         case 4:
-            var cnt=random_buyer(jsdata);
+            var cnt=random_buyer(jsdata,les);
             break;
         case 5:
-            var cnt=random_city(jsdata);
+            var cnt=random_city(jsdata,les);
             break;
         case 6:
-            var cnt=end_promo(jsdata);
+            var cnt=end_promo(jsdata,les);
             break;    
         case 7:
-            var cnt=subscriber(jsdata);
+            var cnt=subscriber(jsdata,les);
             break;   
-        case 7:
-            var cnt=subscriber(jsdata);
+        case 8:
+            var cnt=subscriber_samo(jsdata);
             break;  
     }
     return cnt;
 }
 
-function show_slide(i, arr, start) {
-    var a = function init() {
-        loadJSON(function (response) {
-            //     // Parse JSON string into objec
-            var dc = response;
-            // console.log(response);
-            return response;
-            //  var jsdata = init();
-            // // console.log(jsdata);
-        });
-    }();  
-    let url = '/ppfl/data/data.json';
-
-    fetch(url)
-    .then(res => res.json())
-    .then((out) => {
-    // console.log('Checkout this JSON! ', out);
-    // console.log(out);
-    // var jsdata = '[{"name": "daniele","data": "20/13/2018"}]';   
+function do_slide(data){
     var c = arr.length; 
     // // console.log(jsdata);
     // // console.log(jsdata);
@@ -243,7 +277,7 @@ function show_slide(i, arr, start) {
     // alertify.dismissAll();
     alertify.set('notifier', 'position' , 'bottom-left');
     var cnt_alt = arr[i];
-    var slide=get_slide_type(cnt_alt,elapsed, out);   
+    var slide=get_slide_type(cnt_alt,elapsed, data);   
     var notification = alertify.message(slide);
     notification.delay(10);
     // if (i=6){
@@ -256,22 +290,112 @@ function show_slide(i, arr, start) {
         // break;
         if (i<c) {  
            //  // console.log(i);   //  if the counter < 10, call the loop function
-            show_slide(i,arr,start);             //  ..  again which will trigger another 
+            show_slide(i,arr,start,url);             //  ..  again which will trigger another 
         }
         else{
             i=0;
-            show_slide(i,arr,start);
+            show_slide(i,arr,start,url);
         }
         }
-    })
-    .catch(err => { throw err });    
+}
+
+function show_slide(i, arr, start, url,les,pos) {    
+    var url = url;
+    var fileExt = url.split('.').pop();
+    var pos=pos;
+    console.log('pos'+pos);
+    switch(pos){
+        case 'dl':
+        position='bottom-left';
+        break;
+        case 'dr':
+        position='bottom-right';
+        break;
+        case 'tl':
+        position='top-left';
+        break;
+        case 'tr':
+        position='top-right';
+        break;
+        default:
+        position='bottom-left';
+        break;
+    }
+    console.log(pos);
+    switch(fileExt){
+        case "json":
+        fetch(url)
+            .then(res =>res.json())
+            .then((out) => {
+                var now=Date.now();
+                var elapsed=Math.trunc((now-start)/5000);
+                var c=arr.length;
+                alertify.set('notifier', 'position', ''+position+'');
+                var cnt_alt = arr[i];
+                var les=1;
+                var slide=get_slide_type(cnt_alt,elapsed,data,les,pos);   
+                var notification = alertify.message(slide);
+                notification.delay(10);
+                countdown();
+                notification.ondismiss = function(){
+                    i++;
+                    if (i<c) {  
+                       //  // console.log(i);   //  if the counter < 10, call the loop function
+                        show_slide(i,arr,start,url);             //  ..  again which will trigger another 
+                    }
+                    else{
+                        i=0;
+                        show_slide(i,arr,start,url);
+                    }
+                    }
+            }).catch(err => { throw err }); 
+        break; 
+        case "csv":
+        d3.csv(url).then(function(data) {
+            var now=Date.now();
+            var elapsed=Math.trunc((now-start)/5000);
+           //  // console.log('start: '+start+'; Now: '+now+ '; elapsed: '+ elapsed);
+            // alertify.dismissAll();
+            alertify.set('notifier', 'position' , ''+position+'');
+            var cnt_alt = arr[i];
+            var les=2;
+            var slide=get_slide_type(cnt_alt,elapsed, data,les,pos);   
+            var notification = alertify.message(slide);
+            notification.delay(10);
+            var c=arr.length;
+            countdown();
+            notification.ondismiss = function(){
+                i++;
+               //  // console.log(slide);
+                // break;
+                if (i<c) {  
+                   //  // console.log(i);   //  if the counter < 10, call the loop function
+                    show_slide(i,arr,start,url,les,pos);             //  ..  again which will trigger another 
+                }
+                else{
+                    i=0;
+                    show_slide(i,arr,start,url,les,pos);
+                }
+                }
+            },function(error, rows){
+        console.log(rows); 
+        });
+        break;
+        default: ""
+            console.log('file errato'+fileExt+'');
+        break;
+    }   
 }
 
 
 // var promo=[6,2,3,4,5,1]; 
 // var promo_slide=[6,2]; 
 
-function em_pp(promo_slide) { 
+function em_pp(promo_slide,url,pos,cssv) {
+    var cssv= cssv;
+    if (!(cssv)){
+        cssv='v1';
+    }
     var cssId = 'PopCss';  // you could encode the css path itself to generate id..
     if (!document.getElementById(cssId))
     {
@@ -280,7 +404,7 @@ function em_pp(promo_slide) {
         link.id   = cssId;
         link.rel  = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'https://www.popflu.com/ppfl/css/stylesheet.css';
+        link.href = 'http://localhost:8000/css/stylesheet.css';
         link.media = 'all' ; 
         head.appendChild(link);
     }
@@ -289,7 +413,23 @@ function em_pp(promo_slide) {
     var start=Date.now();
     var i = 0;
     var promo = promo_slide;
-    var promo = [1,7,5];
+    // console.log('promo'+promo.length);
+    if (!(promo)){
+        var promo = [1,7,5]; 
+    }
+    else if (promo.length===0){
+        var promo = [1,7,5];
+    }
+    var pos=pos;
+    if(!(pos)){
+        pos="dl";
+    }
+    else if (pos===""){
+        pos="dl";
+    }
+    // var promo = [1,7,5];
+    // var url='http://localhost:8000/data/data.csv';
+    var url=url;
     // setInterval(()=>fbocci(start),10000);
-    show_slide(i,promo,start); 
+    show_slide(i,promo,start,url,'',pos); 
 }

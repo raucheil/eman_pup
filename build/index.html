@@ -9,7 +9,6 @@
         <title>alert popup</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/stylesheet-487e5641ac.css">
         <style>
         </style>
     </head>
@@ -21,17 +20,17 @@
         <p>. Temporibus ut aliquam error accusamus, fuga, quia mollitia commodi aliquid, delectus quisquam aperiam dolor maxime repudiandae magni ab sint voluptates explicabo? Nobis?</p>
     </body>
     <script>
-
             var head = document.getElementsByTagName('head')[0];
             var script = document.createElement('script');
             script.type = 'text/javascript';
             script.onload = function() {
-            var a=[1,2,4,5,6];
-            em_pp(a);
+            var a=[];
+            var url="http://localhost:8000/data/data.csv";
+            var pos='';
+            em_pp(a,url,pos);
             }
-            script.src = 'js/bundle-debbee296a.js';
-            head.appendChild(script);
-            
-            </script>
+            script.src = 'js/bundle.js';
+            head.appendChild(script);        
+    </script>
 
 </html>
